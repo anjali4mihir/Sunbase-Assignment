@@ -46,11 +46,15 @@ $(document).ready(function() {
           formElement.append(label);
           formElement.append(`<textarea placeholder="${element.placeholder}"></textarea>`);
         }
-  
-        const deleteButton = $('<button class="delete-element"><i class="ss-trash-can-10416"></i></button>');
-        deleteButton.on('click', function() {
-          formData = formData.filter(el => el.id !== element.id);
-          renderForm();
+
+        const deleteButton = document.createElement('button');
+          deleteButton.classList.add('delete-element');
+          deleteButton.innerHTML = '<i class="ss-trash-can-10416">';
+          deleteButton.addEventListener('click', function() {
+          if (confirm('Are you sure you want to delete this element?')) {
+            formData = formData.filter(el => el.id !== element.id);
+            renderForm();
+          }
         });
   
         formElement.append(deleteButton);
@@ -62,10 +66,18 @@ $(document).ready(function() {
   
     function addElement(type) {
       const newId = `id-${Math.random().toString(36).substr(2, 16)}`;
+      let labelVar;
+      if(type === 'input')
+      	labelVar = 'Sample Lable';
+      else if(type === 'textarea')
+      	labelVar = 'Text Area';
+      else if(type === 'select')
+      	labelVar = 'Select';
+      	
       const newElement = {
         id: newId,
         type: type,
-        label: 'New Label',
+        label: labelVar,
       };
   
       if (type === 'input' || type === 'textarea') {
