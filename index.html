@@ -35,5 +35,40 @@
   <script src="assets/js/jquery-3.6.0.min.js"></script>
   <script src="assets/js/jquery-ui.min.js"></script>
   <script src="assets/js/custom.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
+
+  <!-- Popup for adding and editing element -->
+  <div id="popup" class="popup">
+    <div class="popup-content">
+      <span class="close">&times;</span>
+      <h2 id="popup-title">Add New Element</h2>
+      <form id="add-element-form">
+        <label for="element-label">Label:</label>
+        <input type="text" id="element-label" name="element-label" required>
+        
+        <div id="placeholder-container" style="display: none;">
+          <label for="element-placeholder">Placeholder:</label>
+          <input type="text" id="element-placeholder" name="element-placeholder">
+        </div>
+        
+        <div id="options-container" style="display: none;">
+          <label for="element-options">Options:</label>
+          <div id="options-list">
+            <div class="option-item">
+              <input type="text" class="element-option" name="element-option" id="element-options">
+              <button type="button" class="delete-option" onclick="$(this).parent('.option-item').remove()">Delete</button>
+            </div>
+          </div>
+          <button type="button" id="add-option">+ Add Option</button>
+        </div>
+        
+        
+        <div class="element-btn">
+          <button type="submit" class="add-element-btn" id="btn_add">Add</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
 </body>
 </html>
